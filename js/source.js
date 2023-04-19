@@ -1,6 +1,4 @@
-import fetch from "node-fetch";
-globalThis.fetch = fetch;
-const md5 = require("md5");
+import { md5 } from "md5";
 
 const url = "https://gateway.marvel.com:443/v1/public/characters?";
 const publicKey = "15028edce7d7047ff114a2da91a75a0f";
