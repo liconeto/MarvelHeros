@@ -1,3 +1,28 @@
+:root {
+  --color-primary: #14163c;
+  --white: #ffffff;
+  --blue-100: #86d9ff;
+  --blue-200: #60cdff;
+  --blue-300: #3086ff;
+  --blue-400: #0047ab;
+  --yellow-100: #ffed47;
+  --yellow-200: #b6a400;
+  --green-100: #36ff15;
+  --green-200: #00bc29;
+  --red-100: #ff1243;
+  --red-200: #b80000;
+  --blue-hover: #33bfff59;
+  --pink: #ff4cea;
+  --gradient: linear-gradient(
+    -45deg,
+    rgb(17, 19, 51) 150%,
+    rgba(0, 71, 171) 70%,
+    rgba(48, 134, 255) 60%,
+    rgb(134, 217, 255) 40%,
+    rgb(255, 255, 255) 60%
+  );
+}
+
 .section {
     height: 100%;
     display: flex;
@@ -33,4 +58,15 @@
     background: #CCC;
     color: #000; 
     border-color: #000;
+}
+
+.imgHero {
+  width: 40px;
+}
+
+.divHero {
+  display: flex;
+  flex-direction: column;
+  border: 7px solid var(--blue-300);
+  box-shadow: 0px 1px 13px 5px var(--blue-200);
 }

@@ -3,14 +3,34 @@ const publicKey = "15028edce7d7047ff114a2da91a75a0f";
 const privateKey = "9379705b51c6aeb6302f4b4db5243495bf544867";
 let dataApi = {};
 
-function dataHero() {
-  const container = document.getElementById("container");
+function dataHero(data) {
+  let count = data.data.count;
 
-  const tableData = document.createElement("p");
-  tableData.setAttribute("class", "table");
-  tableData.innerHTML = `Textto`;
+  for (x = 0; x < count; x += 1) {
+    let dados = data.data.results[x];
+    const heroCard = document.getElementById("cards");
 
-  container.appendChild(tableData);
+    const divHero = document.createElement("div");
+    divHero.setAttribute("class", "divHero");
+
+    const imgHero = document.createElement("img");
+    imgHero.setAttribute("class", "imgHero");
+    const pathImg = dados.thumbnail.path + "." + dados.thumbnail.extension;
+    imgHero.setAttribute("src", `${pathImg}`);
+
+    const nameHero = document.createElement("p");
+    nameHero.setAttribute("class", "table");
+    nameHero.innerHTML = `nome: ${dados.name}`;
+
+    const descHero = document.createElement("p");
+    descHero.setAttribute("class", "table");
+    descHero.innerHTML = `description: ${dados.description}`;
+
+    divHero.appendChild(imgHero);
+    divHero.appendChild(nameHero);
+    divHero.appendChild(descHero);
+    heroCard.appendChild(divHero);
+  }
 }
 
 getInfo = async () => {
@@ -19,15 +39,14 @@ getInfo = async () => {
   //Gerando hash md5 (timeStamp + chavePrivada + chavePublica)
   let hash = md5(ts + privateKey + publicKey);
 
-  let dataApi = await fetch(
+  let resApi = await fetch(
     `${url}&ts=${ts}&apikey=${publicKey}&hash=${hash}`
   ).then((res) => res.json());
+  dataApi = resApi;
 
+  dataHero(dataApi);
   console.log(`${url}&ts=${ts}&apikey=${publicKey}&hash=${hash}`);
   console.log(`${dataApi.data.results[0].name}`);
-
-  return dataApi;
 };
 
 getInfo();
-dataHero();
