@@ -4,6 +4,32 @@ const privateKey = "9379705b51c6aeb6302f4b4db5243495bf544867";
 let dataApi = {};
 let offset = 0;
 
+function prevPage() {
+  const prevItem = document.createElement("li");
+  prevItem.setAttribute("id", "prevItem");
+  prevItem.setAttribute("class", "navItem");
+  prevItem.innerText = " < ";
+  prevItem.addEventListener("click", (event) => {
+    offset -= 50;
+    getInfo();
+  });
+  document.getElementById("navBar").appendChild(prevItem);
+}
+
+function nextPage() {
+  const nextItem = document.createElement("li");
+  nextItem.setAttribute("id", "nextItem");
+  nextItem.setAttribute("class", "navItem");
+  nextItem.innerText = " > ";
+  nextItem.addEventListener("click", (event) => {
+    offset += 50;
+    getInfo();
+    dataHero(dataApi);
+  });
+  document.getElementById("navBar").appendChild(nextItem);
+  //window.location.reload();
+}
+
 function dataHero(data) {
   let count = data.data.count;
 
@@ -41,16 +67,22 @@ getInfo = async () => {
   let hash = md5(ts + privateKey + publicKey);
 
   let limit = 50;
+
+  prevPage();
+  nextPage();
+
   let resApi = await fetch(
     `${url}&ts=${ts}&offset=${offset}&limit=${limit}&apikey=${publicKey}&hash=${hash}`
   ).then((res) => res.json());
   dataApi = resApi;
 
   dataHero(dataApi);
+
   console.log(
     `${url}&ts=${ts}&offset=${offset}&limit=${limit}&apikey=${publicKey}&hash=${hash}`
   );
   console.log(`${dataApi.data.results[0].name}`);
+  console.log(`Contador ${dataApi.data.count}`);
 };
 
 getInfo();

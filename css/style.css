@@ -15,9 +15,20 @@ body {
 
 .navItem {
   list-style: none; 
-  margin: 0.4rem 0.4rem 0.4rem 0.4rem;
+  margin: 0.2rem 0.7rem 0.2rem 0.7rem;
   display: inline; 
+  border-radius: 2rem;
+
 }
+
+.navItem:hover{
+  border: solid #FF00FF;
+  background-color: #DDA0DD;
+  transition: 0.4s ease-in-out;
+ 
+  
+}
+
 
 .cards{
     display: grid;
@@ -36,13 +47,21 @@ body {
 .divHero{
   display: flex;
   flex-direction: row;
-  margin: .5rem;
-  padding: 1rem;
+  margin: .4rem;
+  padding: 0.5rem;
   border-radius: 1rem;
   border: 0.3rem solid #483D8B;
   box-shadow: 0px 1px 13px 5px #9370DB;
   border-bottom-left-radius: 0px;
   border-top-right-radius: 0px;
+  
+}
+
+.divHero :hover{
+  border: solid #FF00FF;
+  box-shadow: #DDA0DD;
+  transition: 0.4s ease-in-out;
+ 
   
 }
 
